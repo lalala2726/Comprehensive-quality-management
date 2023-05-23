@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangchuang.complex.mapper.StudentGroupDataMapper">
+
+    <resultMap id="StudentResultMap" type="GroupStudentDataInfo">
+        <id property="userId" column="user_id"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="userIC" column="user_name"/>
+        <result property="userName" column="nick_name"/>
+        <result property="groupName" column="group_name"/>
+    </resultMap>
+    <sql id="StudentVO">
+        select *
+        from sys_user
+    </sql>
+
+    <!--List<Student> selectGroupStudentList(Long id);-->
+    <select id="selectGroupStudentList" resultType="GroupStudentDataInfo" resultMap="StudentResultMap">
+        select *
+        from sys_user
+                 join student_group sg on sys_user.group_id = sg.group_id
+        where sg.group_id = #{groupId}
+    </select>
+    <!--List<Student> searchGroupStudentList(GroupStudentDataInfo groupStudentDataInfo);-->
+    <select id="searchGroupStudentList" resultType="GroupStudentDataInfo" resultMap="StudentResultMap">
+        select *
+        from sys_user
+        join student_group sg on sys_user.group_id = sg.group_id
+        <where>
+            <if test="userName != null and userName != ''">
+                AND sys_user.nick_name like concat('%', #{userName}, '%')
+            </if>
+            <if test="userId != null and userId != ''">
+                AND sys_user.user_name like concat('%', #{userId}, '%')
+            </if>
+            AND sg.group_id = #{groupId}
+        </where>
+    </select>
+
+
+</mapper>

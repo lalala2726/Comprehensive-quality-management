@@ -11,5 +11,11 @@ import java.util.List;
  */
 @Mapper
 public interface StudentGroupMapper {
+    /**
+     * 获取小组列表
+     *
+     * @param studentGroup 小组信息
+     * @return 小组信息
+     */
     List<StudentGroup> selectStudentList(StudentGroup studentGroup);
 }
