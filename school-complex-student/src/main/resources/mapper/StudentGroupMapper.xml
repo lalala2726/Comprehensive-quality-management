@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangchuang.complex.mapper.StudentGroupMapper">
+
+    <resultMap id="StudentGroupEntityResult" type="com.zhangchuang.complex.entity.StudentGroup">
+        <id property="groupId" column="group_id"/>
+        <id property="groupName" column="group_name"/>
+        <id property="status" column="status"/>
+        <id property="remark" column="remark"/>
+        <id property="submitTime" column="submit_time"/>
+        <id property="createTime" column="create_time"/>
+        <id property="createBy" column="create_by"/>
+        <id property="updateTime" column="update_time"/>
+        <id property="updateBy" column="update_by"/>
+    </resultMap>
+    <sql id="selectGroupVo">
+        select group_id,
+               group_name,
+               remark,
+               submit_time,
+               create_time,
+               create_by,
+               status,
+               update_time,
+               update_by
+        from student_group
+    </sql>
+    <!--List<StudentGroup> selectStudentList(StudentGroup studentGroup);-->
+    <select id="selectStudentList" resultType="com.zhangchuang.complex.entity.StudentGroup"
+            resultMap="StudentGroupEntityResult">
+        <include refid="selectGroupVo"/>
+    </select>
+
+</mapper>
