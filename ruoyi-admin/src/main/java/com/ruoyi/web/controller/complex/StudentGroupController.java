@@ -3,7 +3,7 @@ package com.ruoyi.web.controller.complex;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.zhangchuang.complex.entity.GroupStudentDataInfo;
-import com.zhangchuang.complex.entity.StudentGroup;
+import com.zhangchuang.complex.entity.Student;
 import com.zhangchuang.complex.service.StudentGroupDataService;
 import com.zhangchuang.complex.service.StudentGroupService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,13 +32,13 @@ public class StudentGroupController extends BaseController {
     /**
      * 获取小组列表
      *
-     * @param studentGroup 小组
+     * @param student 小组
      * @return 小组列表
      */
     @GetMapping("/list")
-    public TableDataInfo list(StudentGroup studentGroup) {
+    public TableDataInfo list(Student student) {
         startPage();
-        List<StudentGroup> list = studentGroupService.selectStudentGroupList(studentGroup);
+        List<Student> list = studentGroupService.selectStudentGroupList(student);
         return getDataTable(list);
     }
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangchuang.complex.mapper.RatingsMapper">
+
+
+    <resultMap id="RatingsResult" type="StudentGrade">
+        <id property="ratingsId" column="ratings_id"/>
+        <result property="studentName" column="username"/>
+        <result property="studentId" column="student_id"/>
+        <result property="self" column="self"/>
+        <result property="information" column="information"/>
+        <result property="communicate" column="communicate"/>
+        <result property="team" column="team"/>
+        <result property="solve" column="solve"/>
+        <result property="innovation" column="innovation"/>
+        <result property="lastTimeResult" column="last_time_result"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+    </resultMap>
+
+    <sql id="ratingResultVO">
+        select ratings_id,
+               student_id,
+               username,
+               self,
+               information,
+               communicate,
+               team,
+               solve,
+               innovation,
+               last_time_result,
+               create_time,
+               create_by,
+               update_time,
+               update_by
+        from user_ratings
+    </sql>
+
+    <!--List<StudentGrade> selectRatingList(Student students);-->
+    <select id="selectRatingList" resultType="StudentGrade" resultMap="RatingsResult">
+        <include refid="ratingResultVO"/>
+    </select>
+</mapper>

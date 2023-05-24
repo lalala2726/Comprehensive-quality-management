@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhangchuang.complex.mapper.StudentGroupMapper">
 
-    <resultMap id="StudentGroupEntityResult" type="com.zhangchuang.complex.entity.StudentGroup">
+    <resultMap id="StudentGroupEntityResult" type="com.zhangchuang.complex.entity.Student">
         <id property="groupId" column="group_id"/>
         <id property="groupName" column="group_name"/>
         <id property="status" column="status"/>
@@ -27,8 +27,8 @@
                update_by
         from student_group
     </sql>
-    <!--List<StudentGroup> selectStudentList(StudentGroup studentGroup);-->
-    <select id="selectStudentList" resultType="com.zhangchuang.complex.entity.StudentGroup"
+    <!--List<StudentGroup> selectStudentList(StudentGroup student);-->
+    <select id="selectStudentList" resultType="com.zhangchuang.complex.entity.Student"
             resultMap="StudentGroupEntityResult">
         <include refid="selectGroupVo"/>
     </select>

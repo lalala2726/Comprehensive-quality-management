@@ -1,6 +1,6 @@
 package com.zhangchuang.complex.service;
 
-import com.zhangchuang.complex.entity.StudentGroup;
+import com.zhangchuang.complex.entity.Student;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface StudentGroupService {
 
-    List<StudentGroup> selectStudentGroupList(StudentGroup studentGroup);
+    List<Student> selectStudentGroupList(Student student);
 }

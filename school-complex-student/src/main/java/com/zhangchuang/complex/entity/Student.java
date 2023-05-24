@@ -9,7 +9,7 @@ import java.util.Date;
  * @author Zhangchuang
  * @create 2023/5/22 23:14
  */
-public class StudentGroup extends BaseEntity {
+public class Student extends BaseEntity {
 
     /**
      * 小组ID

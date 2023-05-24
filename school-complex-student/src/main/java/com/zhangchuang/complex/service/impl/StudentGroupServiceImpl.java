@@ -1,6 +1,6 @@
 package com.zhangchuang.complex.service.impl;
 
-import com.zhangchuang.complex.entity.StudentGroup;
+import com.zhangchuang.complex.entity.Student;
 import com.zhangchuang.complex.mapper.StudentGroupMapper;
 import com.zhangchuang.complex.service.StudentGroupService;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class StudentGroupServiceImpl implements StudentGroupService {
     }
 
     @Override
-    public List<StudentGroup> selectStudentGroupList(StudentGroup studentGroup) {
-        return studentGroupMapper.selectStudentList(studentGroup);
+    public List<Student> selectStudentGroupList(Student student) {
+        return studentGroupMapper.selectStudentList(student);
     }
 }
