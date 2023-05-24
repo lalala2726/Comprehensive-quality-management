@@ -2,8 +2,6 @@ package com.zhangchuang.complex.entity;
 
 import com.ruoyi.common.core.domain.BaseEntity;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -113,8 +111,6 @@ public class StudentGrade extends BaseEntity {
     }
 
     @NotBlank(message = "分数不能为空！")
-    @Max(value = 2, message = "分数限制为2")
-    @Min(value = 0, message = "不能低于0")
     public Integer getSelf() {
         return self;
     }
@@ -124,8 +120,6 @@ public class StudentGrade extends BaseEntity {
     }
 
     @NotBlank(message = "分数不能为空！")
-    @Max(value = 2, message = "分数限制为2")
-    @Min(value = 0, message = "不能低于0")
     public Integer getInformation() {
         return information;
     }
@@ -135,8 +129,6 @@ public class StudentGrade extends BaseEntity {
     }
 
     @NotBlank(message = "分数不能为空！")
-    @Max(value = 2, message = "分数限制为2")
-    @Min(value = 0, message = "不能低于0")
     public Integer getCommunicate() {
         return communicate;
     }
@@ -146,8 +138,6 @@ public class StudentGrade extends BaseEntity {
     }
 
     @NotBlank(message = "分数不能为空！")
-    @Max(value = 2, message = "分数限制为2")
-    @Min(value = 0, message = "不能低于0")
     public Integer getTeam() {
         return team;
     }
@@ -157,8 +147,6 @@ public class StudentGrade extends BaseEntity {
     }
 
     @NotBlank(message = "分数不能为空！")
-    @Max(value = 2, message = "分数限制为2")
-    @Min(value = 0, message = "不能低于0")
     public Integer getSolve() {
         return solve;
     }
@@ -168,8 +156,6 @@ public class StudentGrade extends BaseEntity {
     }
 
     @NotBlank(message = "分数不能为空！")
-    @Max(value = 2, message = "分数限制为2")
-    @Min(value = 0, message = "不能低于0")
     public Integer getInnovation() {
         return innovation;
     }
@@ -178,9 +164,6 @@ public class StudentGrade extends BaseEntity {
         this.innovation = innovation;
     }
 
-    @NotBlank(message = "上次总分不能为空")
-    @Max(value = 10, message = "不能超过10")
-    @Min(value = 0, message = "不能低于0")
     public Integer getLastTimeResult() {
         return lastTimeResult;
     }
