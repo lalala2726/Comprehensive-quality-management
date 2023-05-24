@@ -16,4 +16,20 @@ public interface RatingsService {
      * @return 学生成绩列表
      */
     List<StudentGrade> selectRatingsList(StudentGrade studentGrade);
+
+    /**
+     * 通过学生ID获取详细信息
+     *
+     * @param id 学生ID
+     * @return 返回结果
+     */
+    StudentGrade getRatingInfoById(Long id);
+
+    /**
+     * 修改成绩信息
+     *
+     * @param studentGrade 参数
+     * @return 返回修改结果
+     */
+    Integer updateRating(StudentGrade studentGrade);
 }

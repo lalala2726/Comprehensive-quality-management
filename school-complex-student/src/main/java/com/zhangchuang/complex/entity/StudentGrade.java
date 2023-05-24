@@ -2,6 +2,11 @@ package com.zhangchuang.complex.entity;
 
 import com.ruoyi.common.core.domain.BaseEntity;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 /**
  * 学生成绩表
  *
@@ -18,6 +23,7 @@ public class StudentGrade extends BaseEntity {
     /**
      * 学生学号
      */
+
     private String studentId;
     /**
      * 学生姓名
@@ -72,15 +78,22 @@ public class StudentGrade extends BaseEntity {
      */
     private Integer difference;
 
+    /**
+     * 提交状态
+     */
+    private String status;
 
     public Long getRatingsId() {
         return ratingsId;
     }
 
+
     public void setRatingsId(Long ratingsId) {
         this.ratingsId = ratingsId;
     }
 
+    @NotBlank(message = "学生学号不能为空")
+    @Size(min = 0, max = 30, message = "学生学号长度不能超过30个字符")
     public String getStudentId() {
         return studentId;
     }
@@ -89,6 +102,8 @@ public class StudentGrade extends BaseEntity {
         this.studentId = studentId;
     }
 
+    @NotBlank(message = "学生姓名不能为空")
+    @Size(min = 0, max = 30, message = "学生姓名长度不能超过30个字符")
     public String getStudentName() {
         return studentName;
     }
@@ -97,6 +112,9 @@ public class StudentGrade extends BaseEntity {
         this.studentName = studentName;
     }
 
+    @NotBlank(message = "分数不能为空！")
+    @Max(value = 2, message = "分数限制为2")
+    @Min(value = 0, message = "不能低于0")
     public Integer getSelf() {
         return self;
     }
@@ -105,6 +123,9 @@ public class StudentGrade extends BaseEntity {
         this.self = self;
     }
 
+    @NotBlank(message = "分数不能为空！")
+    @Max(value = 2, message = "分数限制为2")
+    @Min(value = 0, message = "不能低于0")
     public Integer getInformation() {
         return information;
     }
@@ -113,6 +134,9 @@ public class StudentGrade extends BaseEntity {
         this.information = information;
     }
 
+    @NotBlank(message = "分数不能为空！")
+    @Max(value = 2, message = "分数限制为2")
+    @Min(value = 0, message = "不能低于0")
     public Integer getCommunicate() {
         return communicate;
     }
@@ -121,6 +145,9 @@ public class StudentGrade extends BaseEntity {
         this.communicate = communicate;
     }
 
+    @NotBlank(message = "分数不能为空！")
+    @Max(value = 2, message = "分数限制为2")
+    @Min(value = 0, message = "不能低于0")
     public Integer getTeam() {
         return team;
     }
@@ -129,6 +156,9 @@ public class StudentGrade extends BaseEntity {
         this.team = team;
     }
 
+    @NotBlank(message = "分数不能为空！")
+    @Max(value = 2, message = "分数限制为2")
+    @Min(value = 0, message = "不能低于0")
     public Integer getSolve() {
         return solve;
     }
@@ -137,6 +167,9 @@ public class StudentGrade extends BaseEntity {
         this.solve = solve;
     }
 
+    @NotBlank(message = "分数不能为空！")
+    @Max(value = 2, message = "分数限制为2")
+    @Min(value = 0, message = "不能低于0")
     public Integer getInnovation() {
         return innovation;
     }
@@ -145,6 +178,9 @@ public class StudentGrade extends BaseEntity {
         this.innovation = innovation;
     }
 
+    @NotBlank(message = "上次总分不能为空")
+    @Max(value = 10, message = "不能超过10")
+    @Min(value = 0, message = "不能低于0")
     public Integer getLastTimeResult() {
         return lastTimeResult;
     }
@@ -152,6 +188,7 @@ public class StudentGrade extends BaseEntity {
     public void setLastTimeResult(Integer lastTimeResult) {
         this.lastTimeResult = lastTimeResult;
     }
+
 
     public Integer getThisResult() {
         return thisResult;
@@ -169,6 +206,14 @@ public class StudentGrade extends BaseEntity {
         this.difference = difference;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("StudentGrade{");
@@ -184,6 +229,7 @@ public class StudentGrade extends BaseEntity {
         sb.append(", lastTimeResult=").append(lastTimeResult);
         sb.append(", thisResult=").append(thisResult);
         sb.append(", difference=").append(difference);
+        sb.append(", status='").append(status).append('\'');
         sb.append('}');
         return sb.toString();
     }

@@ -41,4 +41,34 @@ public class RatingsServiceImpl implements RatingsService {
         return list;
 
     }
+
+    /**
+     * 通过ID获取详细信息
+     *
+     * @param id 学生ID
+     * @return 返回结果
+     */
+    @Override
+    public StudentGrade getRatingInfoById(Long id) {
+        StudentGrade result = ratingsMapper.getRatingInfoById(id);
+        //计算本次成绩
+        Integer thisResult = result.getSelf() + result.getInformation() + result.getCommunicate()
+                + result.getTeam() + result.getSolve() + result.getInnovation();
+        result.setThisResult(thisResult);
+        //计算差值
+        int abs = Math.abs(thisResult - result.getLastTimeResult());
+        result.setDifference(abs);
+        return result;
+    }
+
+    /**
+     * 修改成绩信息
+     *
+     * @param studentGrade 参数
+     * @return 返回修改结果
+     */
+    @Override
+    public Integer updateRating(StudentGrade studentGrade) {
+        return ratingsMapper.updateRating(studentGrade);
+    }
 }
