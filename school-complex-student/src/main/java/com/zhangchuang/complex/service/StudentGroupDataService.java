@@ -29,4 +29,10 @@ public interface StudentGroupDataService {
     List<GroupStudentDataInfo> serachGroupStudentList(GroupStudentDataInfo groupStudentDataInfo);
 
 
+    /**
+     * 删除小组成员
+     *
+     * @param ids 学生学号
+     */
+    Integer removeStudent(Long[] ids);
 }

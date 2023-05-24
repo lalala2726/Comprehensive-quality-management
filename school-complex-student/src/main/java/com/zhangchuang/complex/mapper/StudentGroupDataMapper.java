@@ -29,4 +29,12 @@ public interface StudentGroupDataMapper {
      * @return 小组成员信息
      */
     List<GroupStudentDataInfo> searchGroupStudentList(GroupStudentDataInfo groupStudentDataInfo);
+
+    /**
+     * 将学生从小组中移除
+     *
+     * @param id 学生学号
+     * @return 返回移除结果
+     */
+    int removeStudent(Long[] id);
 }

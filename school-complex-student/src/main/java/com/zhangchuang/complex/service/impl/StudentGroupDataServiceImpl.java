@@ -36,11 +36,22 @@ public class StudentGroupDataServiceImpl implements StudentGroupDataService {
     /**
      * 搜索小组成员信息
      *
-     * @param groupStudentDataInfo
+     * @param groupStudentDataInfo 参数
      * @return 成员信息
      */
     @Override
     public List<GroupStudentDataInfo> serachGroupStudentList(GroupStudentDataInfo groupStudentDataInfo) {
         return studentGroupDataMapper.searchGroupStudentList(groupStudentDataInfo);
+    }
+
+    /**
+     * 将学生从小组中移除
+     *
+     * @param ids 学生学号
+     * @return 返回移除结果
+     */
+    @Override
+    public Integer removeStudent(Long[] ids) {
+        return studentGroupDataMapper.removeStudent(ids);
     }
 }

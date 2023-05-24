@@ -7,8 +7,8 @@
     <resultMap id="StudentResultMap" type="GroupStudentDataInfo">
         <id property="userId" column="user_id"/>
         <result property="deptId" column="dept_id"/>
-        <result property="userIC" column="user_name"/>
-        <result property="userName" column="nick_name"/>
+        <result property="username" column="user_name"/>
+        <result property="nickName" column="nick_name"/>
         <result property="groupName" column="group_name"/>
     </resultMap>
     <sql id="StudentVO">
@@ -29,15 +29,21 @@
         from sys_user
         join student_group sg on sys_user.group_id = sg.group_id
         <where>
-            <if test="userName != null and userName != ''">
-                AND sys_user.nick_name like concat('%', #{userName}, '%')
+            <if test="nickName != null and nickName != ''">
+                AND sys_user.nick_name like concat('%', #{nickName}, '%')
             </if>
-            <if test="userId != null and userId != ''">
-                AND sys_user.user_name like concat('%', #{userId}, '%')
+            <if test="username != null and username != ''">
+                AND sys_user.user_name like concat('%', #{username}, '%')
             </if>
             AND sg.group_id = #{groupId}
         </where>
     </select>
 
-
+    <!--Integer removeStudent(Long[] id);-->
+    <update id="removeStudent" parameterType="java.lang.Long">
+        update sys_user set group_id = null where sys_user.user_id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
 </mapper>

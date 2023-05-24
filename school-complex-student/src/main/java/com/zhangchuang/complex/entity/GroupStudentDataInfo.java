@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 public class GroupStudentDataInfo extends BaseEntity {
 
     /**
-     * ID
+     * 用户ID
      */
     private Long userId;
 
@@ -19,14 +19,14 @@ public class GroupStudentDataInfo extends BaseEntity {
     private Long deptId;
 
     /**
-     * 学号
+     * 用户账号
      */
-    private String userIC;
+    private String username;
 
     /**
      * 学生姓名
      */
-    private String userName;
+    private String nickName;
 
     /**
      * 小组名称
@@ -36,7 +36,7 @@ public class GroupStudentDataInfo extends BaseEntity {
     /**
      * 小组ID
      */
-    private String groupId;
+    private Long groupId;
 
     public Long getUserId() {
         return userId;
@@ -54,20 +54,20 @@ public class GroupStudentDataInfo extends BaseEntity {
         this.deptId = deptId;
     }
 
-    public String getUserIC() {
-        return userIC;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserIC(String userIC) {
-        this.userIC = userIC;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getGroupName() {
@@ -78,11 +78,11 @@ public class GroupStudentDataInfo extends BaseEntity {
         this.groupName = groupName;
     }
 
-    public String getGroupId() {
+    public Long getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(String groupId) {
+    public void setGroupId(Long groupId) {
         this.groupId = groupId;
     }
 
@@ -91,10 +91,10 @@ public class GroupStudentDataInfo extends BaseEntity {
         final StringBuffer sb = new StringBuffer("GroupStudentDataInfo{");
         sb.append("userId=").append(userId);
         sb.append(", deptId=").append(deptId);
-        sb.append(", userIC='").append(userIC).append('\'');
-        sb.append(", userName='").append(userName).append('\'');
+        sb.append(", username='").append(username).append('\'');
+        sb.append(", nickName='").append(nickName).append('\'');
         sb.append(", groupName='").append(groupName).append('\'');
-        sb.append(", groupId='").append(groupId).append('\'');
+        sb.append(", groupId=").append(groupId);
         sb.append('}');
         return sb.toString();
     }
