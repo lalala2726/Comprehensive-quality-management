@@ -21,8 +21,7 @@ public class StudentGrade extends BaseEntity {
     /**
      * 学生学号
      */
-
-    private String studentId;
+    private Long studentId;
     /**
      * 学生姓名
      */
@@ -92,11 +91,11 @@ public class StudentGrade extends BaseEntity {
 
     @NotBlank(message = "学生学号不能为空")
     @Size(min = 0, max = 30, message = "学生学号长度不能超过30个字符")
-    public String getStudentId() {
+    public Long getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(Long studentId) {
         this.studentId = studentId;
     }
 

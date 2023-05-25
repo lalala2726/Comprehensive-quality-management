@@ -35,4 +35,30 @@ public interface RatingsMapper {
      * @return 返回修改结果
      */
     Integer updateRating(StudentGrade studentGrade);
+
+
+    /**
+     * 检查学生是否存在
+     *
+     * @param id studentId
+     * @return 返回结果
+     */
+    Integer checkStudentExist(@Param("id") Long id);
+
+    /**
+     * 检查成绩表是否包含学生成绩
+     *
+     * @param id 学生id
+     * @return 返回结果
+     */
+    Integer checkRatingExist(@Param("id") Long id);
+
+    /**
+     * 添加学生成绩信息
+     *
+     * @param studentGrade 参数信息
+     * @return 返回结果
+     */
+    Integer addStudentRating(StudentGrade studentGrade);
+
 }

@@ -61,7 +61,7 @@ public class RatingsController extends BaseController {
      * @param studentGrade 参数
      * @return 返回结果
      */
-    @PreAuthorize("@ss.hasPermi('studnet:rating:update')")
+    @PreAuthorize("@ss.hasPermi('student:rating:update')")
     @Log(title = "成绩管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult updateRating(@RequestBody StudentGrade studentGrade) {
@@ -70,6 +70,26 @@ public class RatingsController extends BaseController {
         if (result < 0) {
             AjaxResult.error("删除失败！");
         }
+        return AjaxResult.success();
+    }
+
+    /**
+     * 添加学生信息
+     *
+     * @param studentGrade 学生信息
+     * @return 返回执行结果
+     */
+    @PreAuthorize("@ss.hasPermi('student:rating:add')")
+    @Log(title = "成绩管理", businessType = BusinessType.INSERT)
+    @PostMapping
+    public AjaxResult add(@RequestBody StudentGrade studentGrade) {
+        System.out.println("获取的信息为:" + studentGrade);
+        studentGrade.setCreateBy(getUsername());
+        if (ratingsService.checkStudentExist(studentGrade.getStudentId()) <= 0)
+            return AjaxResult.error("未找到此用户的账号,请先添加学生账号！");
+        if (ratingsService.checkRatingExist(studentGrade.getStudentId()) > 0)
+            return AjaxResult.error("学生成绩表已存在学生信息，无法再次添加！");
+        if (ratingsService.addStudentRating(studentGrade) < 0) return AjaxResult.error("添加失败！");
         return AjaxResult.success();
     }
 }

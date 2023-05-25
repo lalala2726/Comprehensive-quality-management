@@ -7,7 +7,7 @@
 
     <resultMap id="RatingsResult" type="StudentGrade">
         <id property="ratingsId" column="ratings_id"/>
-        <result property="studentName" column="username"/>
+        <result property="studentName" column="student_name"/>
         <result property="studentId" column="student_id"/>
         <result property="self" column="self"/>
         <result property="status" column="status"/>
@@ -26,7 +26,7 @@
     <sql id="ratingResultVO">
         select ratings_id,
                student_id,
-               username,
+               student_name,
                self,
                information,
                communicate,
@@ -69,4 +69,50 @@
         </set>
         where student_id = #{studentId}
     </update>
+
+    <!--Integer checkStudentExist(Long id);-->
+    <select id="checkStudentExist" resultType="Integer">
+        select COUNT(*)
+        from sys_user
+        where user_name = #{id}
+    </select>
+
+    <!--Integer checkRatingExist(Long id);-->
+    <select id="checkRatingExist" resultType="Integer">
+        select COUNT(*)
+        from user_ratings
+        where student_id = #{id}
+    </select>
+
+    <!--Integer addStudentRating(StudentGrade studentGrade);-->
+    <insert id="addStudentRating">
+        insert into user_ratings (
+        <if test="studentId != null and studentId != null">student_id,</if>
+        <if test="studentName != null and studentName != null">student_name,</if>
+        <if test="self != null and self != 0">self,</if>
+        <if test="information != null and information != ''">information,</if>
+        <if test="communicate != null and communicate != ''">communicate,</if>
+        <if test="team != null and team != ''">team,</if>
+        <if test="solve != null and solve != ''">solve,</if>
+        <if test="innovation != null and innovation != ''">innovation,</if>
+        <if test="lastTimeResult != null and lastTimeResult != ''">last_time_result,</if>
+        <if test="createBy != null and createBy != ''">create_by,</if>
+        create_time
+        )
+        values (
+        <if test="studentId != null and studentId != ''">#{studentId},</if>
+        <if test="studentName != null and studentName != null">#{studentName},</if>
+        <if test="self != null and self != 0">#{self},</if>
+        <if test="information != null and information != ''">#{information},</if>
+        <if test="communicate != null and communicate != ''">#{communicate},</if>
+        <if test="team != null and team != ''">#{team},</if>
+        <if test="solve != null and solve != ''">#{solve},</if>
+        <if test="innovation != null and innovation != ''">#{innovation},</if>
+        <if test="lastTimeResult != null and lastTimeResult != ''">#{lastTimeResult},</if>
+        <if test="createBy != null and createBy != ''">#{createBy},</if>
+        sysdate()
+        )
+    </insert>
+
+
 </mapper>

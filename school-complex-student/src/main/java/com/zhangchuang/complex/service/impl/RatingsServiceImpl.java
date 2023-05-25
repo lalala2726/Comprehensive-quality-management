@@ -71,4 +71,39 @@ public class RatingsServiceImpl implements RatingsService {
     public Integer updateRating(StudentGrade studentGrade) {
         return ratingsMapper.updateRating(studentGrade);
     }
+
+    /**
+     * 检查是否存在学生信息
+     *
+     * @param id studentId 学生ID
+     * @return 返回检查结果
+     */
+    @Override
+    public Integer checkStudentExist(Long id) {
+        return ratingsMapper.checkStudentExist(id);
+    }
+
+
+    /**
+     * 添加学生成绩信息
+     *
+     * @param studentGrade 参数
+     * @return 返回添加结果
+     */
+    @Override
+    public Integer addStudentRating(StudentGrade studentGrade) {
+        return ratingsMapper.addStudentRating(studentGrade);
+    }
+
+
+    /**
+     * 检查学生包是是否包含学生成绩
+     *
+     * @param id 学生id
+     * @return 结果
+     */
+    @Override
+    public Integer checkRatingExist(Long id) {
+        return ratingsMapper.checkRatingExist(id);
+    }
 }
