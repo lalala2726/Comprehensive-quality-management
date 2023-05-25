@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangchuang.complex.mapper.SmallGroupMapper">
+
+    <resultMap id="GroupManageResult" type="GroupManage">
+        <id property="groupId" column="group_id"/>
+        <id property="studentId" column="student_id"/>
+        <result property="manageGroup" column="manage_group"/>
+    </resultMap>
+
+    <resultMap id="StudentGroupEntityResult" type="GroupStudentDataInfo">
+        <id property="groupId" column="group_id"/>
+        <id property="groupName" column="group_name"/>
+        <id property="status" column="status"/>
+        <id property="remark" column="remark"/>
+        <id property="submitTime" column="submit_time"/>
+        <id property="createTime" column="create_time"/>
+        <id property="createBy" column="create_by"/>
+        <id property="updateTime" column="update_time"/>
+        <id property="updateBy" column="update_by"/>
+    </resultMap>
+    <!--Integer QueryGroup(String username);-->
+    <select id="QueryGroup" resultType="GroupManage" resultMap="GroupManageResult">
+        select mange_group
+        from group_manage
+    </select>
+
+    <!--List<GroupStudentDataInfo> selectGroupList(GroupStudentDataInfo groupStudentDataInfo);-->
+    <select id="selectGroupList" resultMap="StudentGroupEntityResult" resultType="GroupStudentDataInfo">
+        select *
+        from sys_user
+                 join student_group sg on sys_user.group_id = sg.group_id
+        where sys_user.group_id = #{GroupId}
+    </select>
+</mapper>
