@@ -16,6 +16,7 @@
         <result property="team" column="team"/>
         <result property="solve" column="solve"/>
         <result property="innovation" column="innovation"/>
+        <result property="groupName" column="group_name"/>
         <result property="lastTimeResult" column="last_time_result"/>
         <result property="createTime" column="create_time"/>
         <result property="createBy" column="create_by"/>
@@ -44,7 +45,25 @@
 
     <!--List<StudentGrade> selectRatingList(Student students);-->
     <select id="selectRatingList" resultType="StudentGrade" resultMap="RatingsResult">
-        <include refid="ratingResultVO"/>
+        select ra.ratings_id,
+               ra.student_id,
+               ra.student_name,
+               ra.self,
+               ra.information,
+               ra.communicate,
+               ra.team,
+               ra.status,
+               ra.solve,
+               ra.innovation,
+               ra.last_time_result,
+               ra.create_time,
+               ra.create_by,
+               ra.update_time,
+               ra.update_by,
+               sg.group_name
+        from user_ratings ra
+                 join sys_user su on ra.student_id = su.user_name
+                 join student_group sg on su.group_id = sg.group_id
     </select>
 
     <!--StudentGrade getRatingInfoById(Long id);-->
@@ -113,6 +132,13 @@
         sysdate()
         )
     </insert>
+
+    <!--Integer delete(StudentGrade studentGrade);-->
+    <delete id="delete" parameterType="java.lang.String">
+        delete
+        from user_ratings
+        where student_id = #{id}
+    </delete>
 
 
 </mapper>

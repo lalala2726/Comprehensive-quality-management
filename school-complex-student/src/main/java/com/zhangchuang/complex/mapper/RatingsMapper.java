@@ -43,7 +43,7 @@ public interface RatingsMapper {
      * @param id studentId
      * @return 返回结果
      */
-    Integer checkStudentExist(@Param("id") Long id);
+    Integer checkStudentExist(@Param("id") String id);
 
     /**
      * 检查成绩表是否包含学生成绩
@@ -51,7 +51,7 @@ public interface RatingsMapper {
      * @param id 学生id
      * @return 返回结果
      */
-    Integer checkRatingExist(@Param("id") Long id);
+    Integer checkRatingExist(@Param("id") String id);
 
     /**
      * 添加学生成绩信息
@@ -60,5 +60,13 @@ public interface RatingsMapper {
      * @return 返回结果
      */
     Integer addStudentRating(StudentGrade studentGrade);
+
+    /**
+     * 删除学生成绩信息
+     *
+     * @param id 参数
+     * @return 返回删除结果
+     */
+    Integer delete(@Param("id") String id);
 
 }

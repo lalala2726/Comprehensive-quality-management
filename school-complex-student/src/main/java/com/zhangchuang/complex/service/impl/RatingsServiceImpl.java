@@ -1,5 +1,6 @@
 package com.zhangchuang.complex.service.impl;
 
+import com.ruoyi.common.exception.ServiceException;
 import com.zhangchuang.complex.entity.StudentGrade;
 import com.zhangchuang.complex.mapper.RatingsMapper;
 import com.zhangchuang.complex.service.RatingsService;
@@ -79,7 +80,7 @@ public class RatingsServiceImpl implements RatingsService {
      * @return 返回检查结果
      */
     @Override
-    public Integer checkStudentExist(Long id) {
+    public Integer checkStudentExist(String id) {
         return ratingsMapper.checkStudentExist(id);
     }
 
@@ -103,7 +104,22 @@ public class RatingsServiceImpl implements RatingsService {
      * @return 结果
      */
     @Override
-    public Integer checkRatingExist(Long id) {
+    public Integer checkRatingExist(String id) {
         return ratingsMapper.checkRatingExist(id);
+    }
+
+    /**
+     * 删除学生成绩信息
+     *
+     * @param id 学号
+     */
+    @Override
+    public void delete(String[] id) {
+        for (String s : id) {
+            Integer delete = ratingsMapper.delete(s);
+            if (delete < 0) {
+                throw new ServiceException("学号为" + s + "删除失败！");
+            }
+        }
     }
 }

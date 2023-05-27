@@ -39,7 +39,7 @@ public interface RatingsService {
      * @param id studentId
      * @return 返回结果
      */
-    Integer checkStudentExist(Long id);
+    Integer checkStudentExist(String id);
 
     /**
      * 添加学生成绩信息
@@ -55,5 +55,12 @@ public interface RatingsService {
      * @param id 学生id
      * @return 返回结果
      */
-    Integer checkRatingExist(Long id);
+    Integer checkRatingExist(String id);
+
+    /**
+     * 删除学生成绩信息
+     *
+     * @param id 参数
+     */
+    void delete(String[] id);
 }

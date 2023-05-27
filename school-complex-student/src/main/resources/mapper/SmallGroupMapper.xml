@@ -21,6 +21,7 @@
         <result property="team" column="team"/>
         <result property="solve" column="solve"/>
         <result property="innovation" column="innovation"/>
+        <result property="groupName" column="group_name"/>
         <result property="lastTimeResult" column="last_time_result"/>
         <result property="createTime" column="create_time"/>
         <result property="createBy" column="create_by"/>
@@ -49,16 +50,32 @@
     <!--Integer QueryGroup(String username);-->
     <select id="QueryGroup" resultType="com.zhangchuang.complex.entity.ManageGroup" resultMap="GroupManageResult">
         select *
-        from mange_group where student_id = #{username}
+        from mange_group
+        where student_id = #{username}
     </select>
 
     <!--List<GroupStudentDataInfo> selectGroupList(GroupStudentDataInfo groupStudentDataInfo);-->
     <select id="selectGroupList" resultMap="RatingsResult" resultType="StudentGrade">
-        SELECT *
-        FROM user_ratings
-        WHERE student_name IN (select user_name
-                               from sys_user
-                                        join student_group sg on sys_user.group_id = sg.group_id where sys_user.group_id = 1);
 
+        select ra.ratings_id,
+               ra.student_id,
+               ra.student_name,
+               ra.self,
+               ra.information,
+               ra.communicate,
+               ra.team,
+               ra.status,
+               ra.solve,
+               ra.innovation,
+               ra.last_time_result,
+               ra.create_time,
+               ra.create_by,
+               ra.update_time,
+               ra.update_by,
+               sg.group_name
+        from user_ratings ra
+                 join sys_user su on ra.student_id = su.user_name
+                 join student_group sg on su.group_id = sg.group_id
+        where sg.group_id = #{manageGroup}
     </select>
 </mapper>

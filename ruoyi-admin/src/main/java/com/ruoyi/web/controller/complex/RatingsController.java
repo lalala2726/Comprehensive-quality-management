@@ -92,4 +92,17 @@ public class RatingsController extends BaseController {
         if (ratingsService.addStudentRating(studentGrade) < 0) return AjaxResult.error("添加失败！");
         return AjaxResult.success();
     }
+
+    /**
+     * 删除学生成绩信息
+     *
+     * @param id 参数
+     * @return 返回删除结果
+     */
+    @DeleteMapping("/{id}")
+    public AjaxResult delete(@PathVariable String[] id) {
+        ratingsService.delete(id);
+        return AjaxResult.success();
+    }
+
 }

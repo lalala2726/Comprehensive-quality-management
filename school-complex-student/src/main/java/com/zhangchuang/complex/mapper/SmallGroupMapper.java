@@ -1,10 +1,10 @@
 package com.zhangchuang.complex.mapper;
 
 import com.zhangchuang.complex.entity.ManageGroup;
-import com.zhangchuang.complex.entity.GroupStudentDataInfo;
 import com.zhangchuang.complex.entity.StudentGrade;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -30,4 +30,14 @@ public interface SmallGroupMapper {
      * @return 返回小组编号
      */
     ManageGroup QueryGroup(String username);
+
+    /**
+     * 检查是否提交过
+     *
+     * @param username 学生学号
+     * @return 返回结果
+     */
+    @Select("select COUNT(*) from user_ratings where status = '1' AND student_id = #{username}")
+    Integer checkStatus(@Param("username") String username);
+
 }
