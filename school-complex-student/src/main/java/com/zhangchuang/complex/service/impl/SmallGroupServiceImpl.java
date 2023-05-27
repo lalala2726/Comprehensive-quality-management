@@ -1,6 +1,8 @@
 package com.zhangchuang.complex.service.impl;
 
+import com.ruoyi.common.exception.ServiceException;
 import com.zhangchuang.complex.entity.GroupStudentDataInfo;
+import com.zhangchuang.complex.entity.StudentGrade;
 import com.zhangchuang.complex.mapper.SmallGroupMapper;
 import com.zhangchuang.complex.service.SmallGroupService;
 import org.springframework.stereotype.Service;
@@ -26,9 +28,14 @@ public class SmallGroupServiceImpl implements SmallGroupService {
      * @return 小组成员列表
      */
     @Override
-    public List<GroupStudentDataInfo> selectGroupList(GroupStudentDataInfo groupStudentDataInfo) {
-        Integer manageGroup = smallGroupMapper.QueryGroup(groupStudentDataInfo.getUsername()).getManageGroup();
-        groupStudentDataInfo.setGroupId(Long.valueOf(manageGroup));
-        return smallGroupMapper.selectGroupList(groupStudentDataInfo);
+    public List<StudentGrade> selectGroupList(StudentGrade studentGrade, String username) {
+        System.out.println("username = " + username);
+        Integer id = smallGroupMapper.QueryGroup(username).getManageGroup();
+        System.out.println("小组ID" + id);
+        if (id == null) {
+            throw new ServiceException("您还没有管理小组");
+        }
+        return smallGroupMapper.selectGroupList(studentGrade, id);
     }
+
 }

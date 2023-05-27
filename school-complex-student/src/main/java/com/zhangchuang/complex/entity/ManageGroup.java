@@ -1,12 +1,14 @@
 package com.zhangchuang.complex.entity;
 
+import com.ruoyi.common.core.domain.BaseEntity;
+
 /**
  * 小组关系确定表
  *
  * @author Zhangchuang
  * @create 2023/5/25 21:47
  */
-public class GroupManage {
+public class ManageGroup extends BaseEntity {
 
 
     /**

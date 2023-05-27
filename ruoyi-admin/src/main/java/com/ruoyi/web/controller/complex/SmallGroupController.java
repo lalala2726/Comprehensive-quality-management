@@ -3,6 +3,7 @@ package com.ruoyi.web.controller.complex;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.zhangchuang.complex.entity.GroupStudentDataInfo;
+import com.zhangchuang.complex.entity.StudentGrade;
 import com.zhangchuang.complex.service.SmallGroupService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,13 +30,13 @@ public class SmallGroupController extends BaseController {
     /**
      * 获取小组学生信息
      *
-     * @param groupStudentDataInfo 参数
+     * @param studentGrade 参数
      * @return 小组学生信息
      */
     @GetMapping("/list")
-    public TableDataInfo list(GroupStudentDataInfo groupStudentDataInfo) {
+    public TableDataInfo list(StudentGrade studentGrade) {
         startPage();
-        List<GroupStudentDataInfo> list = smallGroupService.selectGroupList(groupStudentDataInfo);
+        List<StudentGrade> list = smallGroupService.selectGroupList(studentGrade, getUsername());
         return getDataTable(list);
     }
 }

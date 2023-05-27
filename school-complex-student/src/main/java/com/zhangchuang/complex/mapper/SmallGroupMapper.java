@@ -1,8 +1,10 @@
 package com.zhangchuang.complex.mapper;
 
-import com.zhangchuang.complex.entity.GroupManage;
+import com.zhangchuang.complex.entity.ManageGroup;
 import com.zhangchuang.complex.entity.GroupStudentDataInfo;
+import com.zhangchuang.complex.entity.StudentGrade;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,11 +16,11 @@ import java.util.List;
 public interface SmallGroupMapper {
 
     /**
-     * 获取当前小组成员列表
+     * 获取当前小组的成绩信息
      *
      * @return 小组成员列表
      */
-    List<GroupStudentDataInfo> selectGroupList(GroupStudentDataInfo groupStudentDataInfo);
+    List<StudentGrade> selectGroupList(StudentGrade studentGrade, @Param("manageGroup") Integer groupId);
 
 
     /**
@@ -27,5 +29,5 @@ public interface SmallGroupMapper {
      * @param username 用户账号
      * @return 返回小组编号
      */
-    GroupManage QueryGroup(String username);
+    ManageGroup QueryGroup(String username);
 }

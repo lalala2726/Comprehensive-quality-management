@@ -1,6 +1,7 @@
 package com.zhangchuang.complex.service;
 
 import com.zhangchuang.complex.entity.GroupStudentDataInfo;
+import com.zhangchuang.complex.entity.StudentGrade;
 
 import java.util.List;
 
@@ -15,5 +16,6 @@ public interface SmallGroupService {
      *
      * @return 小组成员列表
      */
-    List<GroupStudentDataInfo> selectGroupList(GroupStudentDataInfo groupStudentDataInfo);
+    List<StudentGrade> selectGroupList(StudentGrade studentGrade, String username);
+
 }
