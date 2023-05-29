@@ -1,7 +1,7 @@
 package com.zhangchuang.complex.service.impl;
 
+import com.zhangchuang.complex.entity.DisplayGroup;
 import com.zhangchuang.complex.entity.StudentGrade;
-import com.zhangchuang.complex.mapper.DisplayGroup;
 import com.zhangchuang.complex.mapper.DisplayMapper;
 import com.zhangchuang.complex.service.DisplayService;
 import org.springframework.stereotype.Service;

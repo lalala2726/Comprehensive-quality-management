@@ -2,9 +2,6 @@ package com.zhangchuang.complex.entity;
 
 import com.ruoyi.common.core.domain.BaseEntity;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 /**
  * 学生成绩表
  *
@@ -85,25 +82,25 @@ public class StudentGrade extends BaseEntity {
      */
     private String groupName;
 
-    public String getGroupName() {
-        return groupName;
-    }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
+    /**
+     * 小组编号
+     */
+    private Integer groupId;
+
+    /**
+     * 是否只显示组长
+     */
+    private String studentType;
 
     public Long getRatingsId() {
         return ratingsId;
     }
 
-
     public void setRatingsId(Long ratingsId) {
         this.ratingsId = ratingsId;
     }
 
-    @NotBlank(message = "学生学号不能为空")
-    @Size(min = 0, max = 30, message = "学生学号长度不能超过30个字符")
     public String getStudentId() {
         return studentId;
     }
@@ -112,8 +109,6 @@ public class StudentGrade extends BaseEntity {
         this.studentId = studentId;
     }
 
-    @NotBlank(message = "学生姓名不能为空")
-    @Size(min = 0, max = 30, message = "学生姓名长度不能超过30个字符")
     public String getStudentName() {
         return studentName;
     }
@@ -122,7 +117,6 @@ public class StudentGrade extends BaseEntity {
         this.studentName = studentName;
     }
 
-    @NotBlank(message = "分数不能为空！")
     public Integer getSelf() {
         return self;
     }
@@ -131,7 +125,6 @@ public class StudentGrade extends BaseEntity {
         this.self = self;
     }
 
-    @NotBlank(message = "分数不能为空！")
     public Integer getInformation() {
         return information;
     }
@@ -140,7 +133,6 @@ public class StudentGrade extends BaseEntity {
         this.information = information;
     }
 
-    @NotBlank(message = "分数不能为空！")
     public Integer getCommunicate() {
         return communicate;
     }
@@ -149,7 +141,6 @@ public class StudentGrade extends BaseEntity {
         this.communicate = communicate;
     }
 
-    @NotBlank(message = "分数不能为空！")
     public Integer getTeam() {
         return team;
     }
@@ -158,7 +149,6 @@ public class StudentGrade extends BaseEntity {
         this.team = team;
     }
 
-    @NotBlank(message = "分数不能为空！")
     public Integer getSolve() {
         return solve;
     }
@@ -167,7 +157,6 @@ public class StudentGrade extends BaseEntity {
         this.solve = solve;
     }
 
-    @NotBlank(message = "分数不能为空！")
     public Integer getInnovation() {
         return innovation;
     }
@@ -183,7 +172,6 @@ public class StudentGrade extends BaseEntity {
     public void setLastTimeResult(Integer lastTimeResult) {
         this.lastTimeResult = lastTimeResult;
     }
-
 
     public Integer getThisResult() {
         return thisResult;
@@ -209,6 +197,30 @@ public class StudentGrade extends BaseEntity {
         this.status = status;
     }
 
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public Integer getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getStudentType() {
+        return studentType;
+    }
+
+    public void setStudentType(String studentType) {
+        this.studentType = studentType;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("StudentGrade{");
@@ -225,6 +237,9 @@ public class StudentGrade extends BaseEntity {
         sb.append(", thisResult=").append(thisResult);
         sb.append(", difference=").append(difference);
         sb.append(", status='").append(status).append('\'');
+        sb.append(", groupName='").append(groupName).append('\'');
+        sb.append(", groupId=").append(groupId);
+        sb.append(", studentType='").append(studentType).append('\'');
         sb.append('}');
         return sb.toString();
     }

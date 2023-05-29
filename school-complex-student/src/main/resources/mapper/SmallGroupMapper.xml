@@ -7,7 +7,7 @@
     <resultMap id="GroupManageResult" type="com.zhangchuang.complex.entity.ManageGroup">
         <id property="groupId" column="group_id"/>
         <result property="studentId" column="student_id"/>
-        <result property="manageGroup" column="manage_group"/>
+        <result property="manageGroup" column="mange_group"/>
     </resultMap>
 
     <resultMap id="RatingsResult" type="StudentGrade">
@@ -50,7 +50,7 @@
     <!--Integer QueryGroup(String username);-->
     <select id="QueryGroup" resultType="com.zhangchuang.complex.entity.ManageGroup" resultMap="GroupManageResult">
         select *
-        from mange_group
+        from group_manage
         where student_id = #{username}
     </select>
 
@@ -77,5 +77,7 @@
                  join sys_user su on ra.student_id = su.user_name
                  join student_group sg on su.group_id = sg.group_id
         where sg.group_id = #{manageGroup}
+          and ra.student_id != (select student_id
+                                from group_manage)
     </select>
 </mapper>

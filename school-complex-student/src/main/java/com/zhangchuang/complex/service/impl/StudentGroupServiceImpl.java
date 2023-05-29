@@ -20,8 +20,22 @@ public class StudentGroupServiceImpl implements StudentGroupService {
         this.studentGroupMapper = studentGroupMapper;
     }
 
+    /**
+     * 查询小组列表
+     *
+     * @param student 参数
+     * @return 小组列表
+     */
     @Override
     public List<Student> selectStudentGroupList(Student student) {
-        return studentGroupMapper.selectStudentList(student);
+        List<Student> list = studentGroupMapper.selectStudentList(student);
+        for (Student info : list) {
+            if (studentGroupMapper.queryGroupStatus(info.getGroupId()) > 0) {
+                info.setStatus("0");
+            } else {
+                info.setStatus("1");
+            }
+        }
+        return list;
     }
 }

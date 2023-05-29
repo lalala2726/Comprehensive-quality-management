@@ -33,4 +33,12 @@
         <include refid="selectGroupVo"/>
     </select>
 
+    <select id="queryGroupStatus" resultType="java.lang.Integer">
+        select COUNT(*)
+        from user_ratings ra
+                 join sys_user su on ra.student_id = su.user_name
+        where ra.status = 0
+          and su.group_id = #{groupId};
+    </select>
+
 </mapper>

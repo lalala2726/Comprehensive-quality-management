@@ -38,6 +38,7 @@ public class RatingsController extends BaseController {
     @GetMapping("/list")
     public TableDataInfo list(StudentGrade studentGrade) {
         startPage();
+        System.out.println("显示的类型" + studentGrade.getStudentType());
         List<StudentGrade> list = ratingsService.selectRatingsList(studentGrade);
         return getDataTable(list);
     }

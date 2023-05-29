@@ -1,4 +1,4 @@
-package com.zhangchuang.complex.mapper;
+package com.zhangchuang.complex.entity;
 
 import java.util.List;
 

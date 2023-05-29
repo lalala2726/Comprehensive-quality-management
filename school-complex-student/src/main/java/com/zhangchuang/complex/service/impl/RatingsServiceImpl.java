@@ -70,6 +70,7 @@ public class RatingsServiceImpl implements RatingsService {
      */
     @Override
     public Integer updateRating(StudentGrade studentGrade) {
+        System.out.println("被修改的成绩信息: = " + studentGrade);
         return ratingsMapper.updateRating(studentGrade);
     }
 

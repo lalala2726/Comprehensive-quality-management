@@ -10,5 +10,11 @@ import java.util.List;
  */
 public interface StudentGroupService {
 
+    /**
+     * 查询小组列表
+     *
+     * @param student 参数
+     * @return 小组列表
+     */
     List<Student> selectStudentGroupList(Student student);
 }

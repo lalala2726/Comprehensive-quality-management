@@ -19,8 +19,8 @@
     <!--List<Student> selectGroupStudentList(Long id);-->
     <select id="selectGroupStudentList" resultType="GroupStudentDataInfo" resultMap="StudentResultMap">
         select *
-        from sys_user
-                 join student_group sg on sys_user.group_id = sg.group_id
+        from sys_user su
+                 join student_group sg on su.group_id = sg.group_id
         where sg.group_id = #{groupId}
     </select>
     <!--List<Student> searchGroupStudentList(GroupStudentDataInfo groupStudentDataInfo);-->

@@ -31,9 +31,7 @@ public class SmallGroupServiceImpl implements SmallGroupService {
      */
     @Override
     public List<StudentGrade> selectGroupList(StudentGrade studentGrade, String username) {
-        System.out.println("username = " + username);
         Integer id = smallGroupMapper.QueryGroup(username).getManageGroup();
-        System.out.println("小组ID" + id);
         if (id == null) {
             throw new ServiceException("您还没有管理小组");
         }

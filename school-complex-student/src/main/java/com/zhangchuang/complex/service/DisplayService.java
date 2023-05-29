@@ -1,6 +1,6 @@
 package com.zhangchuang.complex.service;
 
-import com.zhangchuang.complex.mapper.DisplayGroup;
+import com.zhangchuang.complex.entity.DisplayGroup;
 
 /**
  * @author Zhangchuang

@@ -2,6 +2,7 @@ package com.zhangchuang.complex.mapper;
 
 import com.zhangchuang.complex.entity.Student;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,12 @@ public interface StudentGroupMapper {
      * @return 小组信息
      */
     List<Student> selectStudentList(Student student);
+
+
+    /**
+     * 查询小组提交状态信息
+     *
+     * @return 小组未提交的数量
+     */
+    Integer queryGroupStatus(@Param("groupId") Integer groupId);
 }
