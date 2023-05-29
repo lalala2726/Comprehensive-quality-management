@@ -1,5 +1,6 @@
 package com.zhangchuang.complex.entity;
 
+import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
@@ -18,58 +19,69 @@ public class StudentGrade extends BaseEntity {
     /**
      * 学生学号
      */
+    @Excel(name = "学号")
     private String studentId;
     /**
      * 学生姓名
      */
+    @Excel(name = "姓名")
     private String studentName;
 
     /**
      * 自我学习
      */
+    @Excel(name = "自我学习能力")
     private Integer self;
 
     /**
      * 信息处理
      */
+    @Excel(name = "信息处理能力")
     private Integer information;
 
     /**
      * 沟通交流
      */
+    @Excel(name = "沟通交流能力")
     private Integer communicate;
 
     /**
      * 团队合作
      */
+    @Excel(name = "团队合作能力")
     private Integer team;
 
     /**
      * 解决问题
      */
+    @Excel(name = "解决问题能力")
     private Integer solve;
 
     /**
      * 革新创新
      */
+    @Excel(name = "革新创新能力")
     private Integer innovation;
 
 
     /**
      * 上次总分
      */
+    @Excel(name = "上次总分")
     private Integer lastTimeResult;
 
 
     /**
      * 本次总分
      */
+    @Excel(name = "本次总分")
     private Integer thisResult;
 
 
     /**
      * 差值
      */
+    @Excel(name = "差值")
     private Integer difference;
 
     /**
@@ -80,6 +92,7 @@ public class StudentGrade extends BaseEntity {
     /**
      * 小组名称
      */
+    @Excel(name = "所在小组")
     private String groupName;
 
 

@@ -77,7 +77,7 @@
                  join sys_user su on ra.student_id = su.user_name
                  join student_group sg on su.group_id = sg.group_id
         where sg.group_id = #{manageGroup}
-          and ra.student_id != (select student_id
-                                from group_manage)
+          and ra.student_id NOT IN (select student_id
+                                    from group_manage)
     </select>
 </mapper>

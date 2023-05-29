@@ -5,11 +5,13 @@ import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
+import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.zhangchuang.complex.entity.StudentGrade;
 import com.zhangchuang.complex.service.RatingsService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,7 +40,6 @@ public class RatingsController extends BaseController {
     @GetMapping("/list")
     public TableDataInfo list(StudentGrade studentGrade) {
         startPage();
-        System.out.println("显示的类型" + studentGrade.getStudentType());
         List<StudentGrade> list = ratingsService.selectRatingsList(studentGrade);
         return getDataTable(list);
     }
@@ -105,5 +106,21 @@ public class RatingsController extends BaseController {
         ratingsService.delete(id);
         return AjaxResult.success();
     }
+
+    /**
+     * 将成绩信息导出为excel
+     *
+     * @param response     相应信息
+     * @param studentGrade 参数
+     */
+    @PreAuthorize("@ss.hasPermi('student:rating:export')")
+    @Log(title = "成绩管理", businessType = BusinessType.EXPORT)
+    @PostMapping("/export")
+    public void export(HttpServletResponse response, StudentGrade studentGrade) {
+        List<StudentGrade> list = ratingsService.selectRatingsList(studentGrade);
+        ExcelUtil<StudentGrade> util = new ExcelUtil<StudentGrade>(StudentGrade.class);
+        util.exportExcel(response, list, "学生成绩信息");
+    }
+
 
 }
