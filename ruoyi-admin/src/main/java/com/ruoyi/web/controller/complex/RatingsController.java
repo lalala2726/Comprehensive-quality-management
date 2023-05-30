@@ -37,6 +37,7 @@ public class RatingsController extends BaseController {
      * @param studentGrade 参数
      * @return 成绩信息
      */
+    @PreAuthorize("@ss.hasPermi('complex:rating:query')")
     @GetMapping("/list")
     public TableDataInfo list(StudentGrade studentGrade) {
         startPage();
@@ -50,6 +51,7 @@ public class RatingsController extends BaseController {
      * @param id 学生ID
      * @return 成绩信息
      */
+    @PreAuthorize("@ss.hasPermi('complex:rating:query')")
     @GetMapping("/{id}")
     public AjaxResult getRatingInfoById(@PathVariable Long id) {
         StudentGrade result = ratingsService.getRatingInfoById(id);
@@ -63,7 +65,7 @@ public class RatingsController extends BaseController {
      * @param studentGrade 参数
      * @return 返回结果
      */
-    @PreAuthorize("@ss.hasPermi('student:rating:update')")
+    @PreAuthorize("@ss.hasPermi('complex:rating:edit')")
     @Log(title = "成绩管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult updateRating(@RequestBody StudentGrade studentGrade) {
@@ -81,7 +83,7 @@ public class RatingsController extends BaseController {
      * @param studentGrade 学生信息
      * @return 返回执行结果
      */
-    @PreAuthorize("@ss.hasPermi('student:rating:add')")
+    @PreAuthorize("@ss.hasPermi('complex:rating:add')")
     @Log(title = "成绩管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody StudentGrade studentGrade) {
@@ -101,6 +103,8 @@ public class RatingsController extends BaseController {
      * @param id 参数
      * @return 返回删除结果
      */
+    @PreAuthorize("@ss.hasPermi('complex:rating:remove')")
+    @Log(title = "成绩管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{id}")
     public AjaxResult delete(@PathVariable String[] id) {
         ratingsService.delete(id);
@@ -113,7 +117,7 @@ public class RatingsController extends BaseController {
      * @param response     相应信息
      * @param studentGrade 参数
      */
-    @PreAuthorize("@ss.hasPermi('student:rating:export')")
+    @PreAuthorize("@ss.hasPermi('complex:rating:export')")
     @Log(title = "成绩管理", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, StudentGrade studentGrade) {
@@ -122,5 +126,21 @@ public class RatingsController extends BaseController {
         util.exportExcel(response, list, "学生成绩信息");
     }
 
+
+    /**
+     * 修改提交状态
+     *
+     * @param status 参数
+     * @return 返回修改结果
+     */
+    @PreAuthorize("@ss.hasPermi('complex:rating:edit')")
+    @Log(title = "成绩管理", businessType = BusinessType.UPDATE)
+    @PostMapping("/submitChange/{status}")
+    public AjaxResult submitChange(@PathVariable Integer status) {
+        if (ratingsService.submitChange(status) < 0) {
+            AjaxResult.error("修改失败！");
+        }
+        return AjaxResult.success();
+    }
 
 }

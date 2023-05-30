@@ -69,4 +69,12 @@ public interface RatingsMapper {
      */
     Integer delete(@Param("id") String id);
 
+
+    /**
+     * 提交状态信息修改
+     *
+     * @param status 参数
+     * @return 修改结果
+     */
+    Integer submitChange(Integer status);
 }

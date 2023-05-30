@@ -63,4 +63,12 @@ public interface RatingsService {
      * @param id 参数
      */
     void delete(String[] id);
+
+    /**
+     * 提交状态信息修改
+     *
+     * @param status 参数
+     * @return 修改结果
+     */
+    Integer submitChange(Integer status);
 }

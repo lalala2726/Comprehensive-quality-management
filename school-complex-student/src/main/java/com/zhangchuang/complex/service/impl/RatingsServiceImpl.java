@@ -123,4 +123,15 @@ public class RatingsServiceImpl implements RatingsService {
             }
         }
     }
+
+    /**
+     * 提交状态信息修改
+     *
+     * @param status 参数
+     * @return 返回修改结果
+     */
+    @Override
+    public Integer submitChange(Integer status) {
+        return ratingsMapper.submitChange(status);
+    }
 }
