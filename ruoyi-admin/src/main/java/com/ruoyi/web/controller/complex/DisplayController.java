@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+
 /**
  * 数据可视化
  *
@@ -33,5 +35,16 @@ public class DisplayController {
     @GetMapping("/{id}")
     public AjaxResult getGroupDataById(@PathVariable Integer id) {
         return AjaxResult.success(displayService.getGroupDataById(id));
+    }
+
+    /**
+     * 展示成绩分析数据
+     *
+     * @return 数据
+     */
+    @GetMapping("/all")
+    public AjaxResult displayDashboardData() {
+        HashMap<String, Object> stringObjectHashMap = displayService.displayDashboardData();
+        return AjaxResult.success(stringObjectHashMap);
     }
 }

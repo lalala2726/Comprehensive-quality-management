@@ -27,11 +27,17 @@ public class DisplayGroup {
      */
     private List<Integer> difference;
 
-    public DisplayGroup(List<String> name, List<Integer> lastFraction, List<Integer> thisFraction, List<Integer> difference) {
+    /**
+     * 所在小组
+     */
+    private String groupName;
+
+    public DisplayGroup(List<String> name, List<Integer> lastFraction, List<Integer> thisFraction, List<Integer> difference, String groupName) {
         this.name = name;
         this.lastFraction = lastFraction;
         this.thisFraction = thisFraction;
         this.difference = difference;
+        this.groupName = groupName;
     }
 
     public List<String> getName() {
@@ -64,5 +70,25 @@ public class DisplayGroup {
 
     public void setDifference(List<Integer> difference) {
         this.difference = difference;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("DisplayGroup{");
+        sb.append("name=").append(name);
+        sb.append(", lastFraction=").append(lastFraction);
+        sb.append(", thisFraction=").append(thisFraction);
+        sb.append(", difference=").append(difference);
+        sb.append(", groupName='").append(groupName).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

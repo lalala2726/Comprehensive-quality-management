@@ -40,4 +40,13 @@ public interface SmallGroupMapper {
     @Select("select COUNT(*) from user_ratings where status = '1' AND student_id = #{username}")
     Integer checkStatus(@Param("username") String username);
 
+
+    /**
+     * 检查小组数量
+     *
+     * @return 返回小组数量
+     */
+    @Select("select COUNT(*) from student_group")
+    Integer queryNumberOfGroup();
+
 }

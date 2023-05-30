@@ -25,9 +25,25 @@
 
     <!--List<StudentGrade> getGroupDataById(Integer id);-->
     <select id="getGroupDataById" resultType="StudentGrade" resultMap="RatingsResult">
-        select *
+        select ra.ratings_id,
+               ra.student_name,
+               ra.student_id,
+               ra.self,
+               ra.status,
+               ra.information,
+               ra.communicate,
+               ra.team,
+               ra.solve,
+               ra.innovation,
+               gr.group_name,
+               ra.last_time_result,
+               ra.create_time,
+               ra.create_by,
+               ra.update_time,
+               ra.update_by
         from user_ratings ra
                  join sys_user su on su.user_name = ra.student_id
+                 join student_group gr on su.group_id = gr.group_id
         where su.group_id = #{groupId}
     </select>
 </mapper>
