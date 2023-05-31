@@ -71,4 +71,12 @@ public interface RatingsService {
      * @return 修改结果
      */
     Integer submitChange(Integer status);
+
+
+    /**
+     * 重置所有学生的分数
+     *
+     * @return 返回执行结果
+     */
+    Integer resetScore();
 }

@@ -166,5 +166,20 @@
         where 1 = 1
     </update>
 
+    <!--Integer resetScore();-->
+    <update id="resetScore">
+        update user_ratings
+        <set>
+            self = 0,
+            information = 0,
+            communicate = 0,
+            team = 0,
+            solve = 0,
+            innovation = 0,
+            last_time_result = 0,
+        </set>
+        where 1 = 1
+    </update>
+
 
 </mapper>

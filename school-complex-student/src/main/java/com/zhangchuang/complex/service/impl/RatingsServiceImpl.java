@@ -134,4 +134,14 @@ public class RatingsServiceImpl implements RatingsService {
     public Integer submitChange(Integer status) {
         return ratingsMapper.submitChange(status);
     }
+
+    /**
+     * 重置所有学生的分数
+     *
+     * @return 返回执行结果
+     */
+    @Override
+    public Integer resetScore() {
+        return ratingsMapper.resetScore();
+    }
 }

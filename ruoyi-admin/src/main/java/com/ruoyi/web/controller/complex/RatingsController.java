@@ -122,7 +122,7 @@ public class RatingsController extends BaseController {
     @PostMapping("/export")
     public void export(HttpServletResponse response, StudentGrade studentGrade) {
         List<StudentGrade> list = ratingsService.selectRatingsList(studentGrade);
-        ExcelUtil<StudentGrade> util = new ExcelUtil<StudentGrade>(StudentGrade.class);
+        ExcelUtil<StudentGrade> util = new ExcelUtil<>(StudentGrade.class);
         util.exportExcel(response, list, "学生成绩信息");
     }
 
@@ -135,10 +135,25 @@ public class RatingsController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('complex:rating:edit')")
     @Log(title = "成绩管理", businessType = BusinessType.UPDATE)
-    @PostMapping("/submitChange/{status}")
+    @PutMapping("/submitChange/{status}")
     public AjaxResult submitChange(@PathVariable Integer status) {
         if (ratingsService.submitChange(status) < 0) {
             AjaxResult.error("修改失败！");
+        }
+        return AjaxResult.success();
+    }
+
+    /**
+     * 重置所有学生的得分
+     *
+     * @return 返回执行结果
+     */
+    @PreAuthorize("@ss.hasPermi('complex:rating:edit')")
+    @Log(title = "成绩管理", businessType = BusinessType.UPDATE)
+    @PutMapping("/resetScore")
+    public AjaxResult resetScore() {
+        if (ratingsService.resetScore() < 0) {
+            return AjaxResult.error("执行失败！");
         }
         return AjaxResult.success();
     }
