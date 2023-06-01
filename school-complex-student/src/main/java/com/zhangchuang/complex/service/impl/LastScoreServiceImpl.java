@@ -34,7 +34,6 @@ public class LastScoreServiceImpl implements LastScoreService {
             Integer thisResult = grade.getSelf() + grade.getInformation() + grade.getCommunicate()
                     + grade.getTeam() + grade.getSolve() + grade.getInnovation();
             grade.setThisResult(thisResult);
-            grade.setThisResult(thisResult);
         }
         return list;
     }

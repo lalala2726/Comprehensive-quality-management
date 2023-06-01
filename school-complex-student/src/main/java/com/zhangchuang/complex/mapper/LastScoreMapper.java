@@ -3,6 +3,7 @@ package com.zhangchuang.complex.mapper;
 import com.zhangchuang.complex.entity.StudentLastScore;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -37,4 +38,14 @@ public interface LastScoreMapper {
      * @return 修改结果
      */
     Integer updateStudentScore(StudentLastScore studentLastScore);
+
+    /**
+     * 查询上次分数总分
+     *
+     * @return 返回总分
+     */
+    @Select("select self + information + communicate + team + solve + innovation as total\n" +
+            "from student_last_score where student_id = #{studentId}")
+    Integer queryLastTotalScore(@Param("studentId") String studentId);
+
 }

@@ -47,4 +47,15 @@ public class DisplayController {
         HashMap<String, Object> stringObjectHashMap = displayService.displayDashboardData();
         return AjaxResult.success(stringObjectHashMap);
     }
+
+    /**
+     * 获取学生的数据信息
+     *
+     * @param id 学生ID
+     * @return 数据信息
+     */
+    @GetMapping("/student/{id}")
+    public AjaxResult getStudentDataById(@PathVariable String id) {
+        return AjaxResult.success(displayService.getStudentDataById(id));
+    }
 }

@@ -53,7 +53,7 @@ public class RatingsController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('complex:rating:query')")
     @GetMapping("/{id}")
-    public AjaxResult getRatingInfoById(@PathVariable Long id) {
+    public AjaxResult getRatingInfoById(@PathVariable String id) {
         StudentGrade result = ratingsService.getRatingInfoById(id);
         if (Objects.isNull(result)) return AjaxResult.error("未找到此用户信息!");
         return AjaxResult.success(result);

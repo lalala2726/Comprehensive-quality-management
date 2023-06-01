@@ -26,7 +26,7 @@ public interface RatingsMapper {
      * @param id 学生ID
      * @return 返回结果
      */
-    StudentGrade getRatingInfoById(@Param("id") Long id);
+    StudentGrade getRatingInfoById(@Param("id") String id);
 
     /**
      * 修改成绩信息

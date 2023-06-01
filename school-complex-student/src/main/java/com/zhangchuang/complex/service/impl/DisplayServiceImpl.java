@@ -2,12 +2,16 @@ package com.zhangchuang.complex.service.impl;
 
 import com.zhangchuang.complex.entity.DisplayGroup;
 import com.zhangchuang.complex.entity.StudentGrade;
+import com.zhangchuang.complex.entity.StudentLastScore;
 import com.zhangchuang.complex.mapper.DisplayMapper;
+import com.zhangchuang.complex.mapper.LastScoreMapper;
+import com.zhangchuang.complex.mapper.RatingsMapper;
 import com.zhangchuang.complex.mapper.SmallGroupMapper;
 import com.zhangchuang.complex.service.DisplayService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,10 +24,15 @@ public class DisplayServiceImpl implements DisplayService {
 
     private final DisplayMapper displayMapper;
     private final SmallGroupMapper smallGroupMapper;
+    private final LastScoreMapper lastScoreMapper;
 
-    public DisplayServiceImpl(DisplayMapper displayMapper, SmallGroupMapper smallGroupMapper) {
+    private final RatingsMapper ratingsMapper;
+
+    public DisplayServiceImpl(DisplayMapper displayMapper, SmallGroupMapper smallGroupMapper, LastScoreMapper lastScoreMapper, RatingsMapper ratingsMapper) {
         this.displayMapper = displayMapper;
         this.smallGroupMapper = smallGroupMapper;
+        this.lastScoreMapper = lastScoreMapper;
+        this.ratingsMapper = ratingsMapper;
     }
 
     /**
@@ -41,7 +50,8 @@ public class DisplayServiceImpl implements DisplayService {
         List<Integer> difference = new ArrayList<>();
         String groupName = null;
         for (StudentGrade grade : list) {
-
+            Integer lastTotalScore = lastScoreMapper.queryLastTotalScore(grade.getStudentId());
+            grade.setLastTimeResult(lastTotalScore);
             //计算总分
             Integer thisResult = grade.getSelf() + grade.getInformation() + grade.getCommunicate()
                     + grade.getTeam() + grade.getSolve() + grade.getInnovation();
@@ -81,6 +91,8 @@ public class DisplayServiceImpl implements DisplayService {
             String groupName = null;
 
             for (StudentGrade grade : studentGrades) {
+                Integer lastTotalScore = lastScoreMapper.queryLastTotalScore(grade.getStudentId());
+                grade.setLastTimeResult(lastTotalScore);
                 // 计算总分
                 int thisResult = grade.getSelf() + grade.getInformation() + grade.getCommunicate()
                         + grade.getTeam() + grade.getSolve() + grade.getInnovation();
@@ -111,6 +123,38 @@ public class DisplayServiceImpl implements DisplayService {
         result.put("totalAbs", totalAbsList);
 
         return result;
+    }
+
+
+    /**
+     * 获取指定学生的数据信息
+     *
+     * @param studentId 学生ID
+     * @return 数据
+     */
+    @Override
+    public HashMap<String, Object> getStudentDataById(String studentId) {
+        HashMap<String, Object> map = new HashMap<>();
+
+        // 一次性查询 lastScore 和 thisScore 的数据
+        StudentLastScore lastScore = lastScoreMapper.getStudentDetailById(studentId);
+        StudentGrade thisScore = ratingsMapper.getRatingInfoById(studentId);
+
+        // 构建 lastScoreList 和 thisScoreList
+        List<Integer> lastScoreList = Arrays.asList(
+                lastScore.getSelf(), lastScore.getInformation(), lastScore.getCommunicate(),
+                lastScore.getTeam(), lastScore.getSolve(), lastScore.getInnovation()
+        );
+        List<Integer> thisScoreList = Arrays.asList(
+                thisScore.getSelf(), thisScore.getInformation(), thisScore.getCommunicate(),
+                thisScore.getTeam(), thisScore.getSolve(), thisScore.getInnovation()
+        );
+
+        map.put("lastScore", lastScoreList);
+        map.put("thisScore", thisScoreList);
+        map.put("studentName", thisScore.getStudentName());
+
+        return map;
     }
 
 

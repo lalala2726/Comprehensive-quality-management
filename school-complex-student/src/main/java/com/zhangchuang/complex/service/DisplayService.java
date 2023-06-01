@@ -25,4 +25,12 @@ public interface DisplayService {
      * @return 数据
      */
     HashMap<String, Object> displayDashboardData();
+
+    /**
+     * 通过ID获取指定学生的数据分析
+     *
+     * @param studentId 学生ID
+     * @return 数据
+     */
+    HashMap<String, Object> getStudentDataById(String studentId);
 }

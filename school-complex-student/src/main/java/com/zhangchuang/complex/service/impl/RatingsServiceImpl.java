@@ -2,6 +2,7 @@ package com.zhangchuang.complex.service.impl;
 
 import com.ruoyi.common.exception.ServiceException;
 import com.zhangchuang.complex.entity.StudentGrade;
+import com.zhangchuang.complex.mapper.LastScoreMapper;
 import com.zhangchuang.complex.mapper.RatingsMapper;
 import com.zhangchuang.complex.service.RatingsService;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,11 @@ public class RatingsServiceImpl implements RatingsService {
 
     private final RatingsMapper ratingsMapper;
 
-    public RatingsServiceImpl(RatingsMapper ratingsMapper) {
+    private final LastScoreMapper lastScoreMapper;
+
+    public RatingsServiceImpl(RatingsMapper ratingsMapper, LastScoreMapper lastScoreMapper) {
         this.ratingsMapper = ratingsMapper;
+        this.lastScoreMapper = lastScoreMapper;
     }
 
     /**
@@ -31,6 +35,8 @@ public class RatingsServiceImpl implements RatingsService {
     public List<StudentGrade> selectRatingsList(StudentGrade studentGrade) {
         List<StudentGrade> list = ratingsMapper.selectRatingList(studentGrade);
         for (StudentGrade grade : list) {
+            Integer lastTotalScore = lastScoreMapper.queryLastTotalScore(grade.getStudentId());
+            grade.setLastTimeResult(lastTotalScore);
             //计算总分
             Integer thisResult = grade.getSelf() + grade.getInformation() + grade.getCommunicate()
                     + grade.getTeam() + grade.getSolve() + grade.getInnovation();
@@ -50,7 +56,7 @@ public class RatingsServiceImpl implements RatingsService {
      * @return 返回结果
      */
     @Override
-    public StudentGrade getRatingInfoById(Long id) {
+    public StudentGrade getRatingInfoById(String id) {
         StudentGrade result = ratingsMapper.getRatingInfoById(id);
         //计算本次成绩
         Integer thisResult = result.getSelf() + result.getInformation() + result.getCommunicate()
