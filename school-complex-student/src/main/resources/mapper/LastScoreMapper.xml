@@ -4,5 +4,77 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhangchuang.complex.mapper.LastScoreMapper">
 
+    <resultMap id="studentLastScoreResult" type="StudentLastScore">
+        <id property="ratingsId" column="ratings_id"/>
+        <result property="studentName" column="nick_name"/>
+        <result property="studentId" column="student_id"/>
+        <result property="self" column="self"/>
+        <result property="information" column="information"/>
+        <result property="communicate" column="communicate"/>
+        <result property="team" column="team"/>
+        <result property="solve" column="solve"/>
+        <result property="innovation" column="innovation"/>
+        <result property="groupName" column="group_name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+    </resultMap>
+    <!--List<StudentLastScore> selectStudentLastScoreList(StudentLastScore studentLastScore);-->
+    <select id="selectStudentLastScoreList" resultType="StudentLastScore" resultMap="studentLastScoreResult">
+        select sc.ratings_id,
+               sc.student_id,
+               sc.self,
+               sc.information,
+               sc.communicate,
+               sc.team,
+               sc.solve,
+               sc.innovation,
+               sc.create_by,
+               sc.create_time,
+               sc.update_by,
+               sc.update_time,
+               su.nick_name,
+               sg.group_name
+        from student_last_score sc
+                 join sys_user su on su.user_name = sc.student_id
+                 join student_group sg on su.group_id = sg.group_id
+    </select>
 
+    <!--StudentLastScore getStudentDetailById(Integer id);-->
+    <select id="getStudentDetailById" resultType="StudentLastScore" resultMap="studentLastScoreResult">
+        select sc.ratings_id,
+               sc.student_id,
+               sc.self,
+               sc.information,
+               sc.communicate,
+               sc.team,
+               sc.solve,
+               sc.innovation,
+               sc.create_by,
+               sc.create_time,
+               sc.update_by,
+               sc.update_time,
+               su.nick_name,
+               sg.group_name
+        from student_last_score sc
+                 join sys_user su on su.user_name = sc.student_id
+                 join student_group sg on su.group_id = sg.group_id
+        where sc.student_id = #{id}
+    </select>
+
+    <!--Integer updateStudentScore(StudentLastScore studentLastScore);-->
+    <update id="updateStudentScore">
+        update student_last_score
+        <set>
+            <if test="self != null">self = #{self},</if>
+            <if test="information != null">information = #{information},</if>
+            <if test="communicate != null">communicate = #{communicate},</if>
+            <if test="team != null">team = #{team},</if>
+            <if test="solve != null">solve = #{solve},</if>
+            <if test="innovation != null">innovation = #{innovation},</if>
+            update_time = sysdate(),update_by = #{updateBy}
+        </set>
+        where student_id = #{studentId}
+    </update>
 </mapper>

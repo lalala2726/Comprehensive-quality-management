@@ -28,6 +28,42 @@ public class LastScoreServiceImpl implements LastScoreService {
      */
     @Override
     public List<StudentLastScore> selectStudentLastScoreList(StudentLastScore studentLastScore) {
-        return lastScoreMapper.selectStudentLastScoreList(studentLastScore);
+        List<StudentLastScore> list = lastScoreMapper.selectStudentLastScoreList(studentLastScore);
+        for (StudentLastScore grade : list) {
+            //计算总分
+            Integer thisResult = grade.getSelf() + grade.getInformation() + grade.getCommunicate()
+                    + grade.getTeam() + grade.getSolve() + grade.getInnovation();
+            grade.setThisResult(thisResult);
+            grade.setThisResult(thisResult);
+        }
+        return list;
+    }
+
+    /**
+     * 根据ID查询学神成绩信息
+     *
+     * @param id 学生ID
+     * @return 成绩信息
+     */
+    @Override
+    public StudentLastScore getStudentDetailById(String id) {
+        StudentLastScore grade = lastScoreMapper.getStudentDetailById(id);
+        //计算总分
+        Integer thisResult = grade.getSelf() + grade.getInformation() + grade.getCommunicate()
+                + grade.getTeam() + grade.getSolve() + grade.getInnovation();
+        grade.setThisResult(thisResult);
+        grade.setThisResult(thisResult);
+        return grade;
+    }
+
+    /**
+     * 修改成绩信息
+     *
+     * @param studentLastScore 参数
+     * @return 修改结果
+     */
+    @Override
+    public Integer updateStudentScore(StudentLastScore studentLastScore) {
+        return lastScoreMapper.updateStudentScore(studentLastScore);
     }
 }

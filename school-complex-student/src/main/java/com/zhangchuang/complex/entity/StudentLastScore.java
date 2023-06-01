@@ -1,12 +1,14 @@
 package com.zhangchuang.complex.entity;
 
+import com.ruoyi.common.core.domain.BaseEntity;
+
 /**
  * 学生上次分数详情
  *
  * @author Zhangchuang
  * @create 2023/6/1 13:27
  */
-public class StudentLastScore {
+public class StudentLastScore extends BaseEntity {
     /**
      * 成绩表ID
      */
@@ -51,6 +53,11 @@ public class StudentLastScore {
      * 革新创新
      */
     private Integer innovation;
+
+    /**
+     * 本次总分
+     */
+    private Integer thisResult;
 
 
     /**
@@ -130,6 +137,14 @@ public class StudentLastScore {
         this.innovation = innovation;
     }
 
+    public Integer getThisResult() {
+        return thisResult;
+    }
+
+    public void setThisResult(Integer thisResult) {
+        this.thisResult = thisResult;
+    }
+
     public String getGroupName() {
         return groupName;
     }
@@ -138,10 +153,9 @@ public class StudentLastScore {
         this.groupName = groupName;
     }
 
-
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("StudentLastScoreDetail{");
+        final StringBuffer sb = new StringBuffer("StudentLastScore{");
         sb.append("ratingsId=").append(ratingsId);
         sb.append(", studentId='").append(studentId).append('\'');
         sb.append(", studentName='").append(studentName).append('\'');
@@ -151,6 +165,7 @@ public class StudentLastScore {
         sb.append(", team=").append(team);
         sb.append(", solve=").append(solve);
         sb.append(", innovation=").append(innovation);
+        sb.append(", thisResult=").append(thisResult);
         sb.append(", groupName='").append(groupName).append('\'');
         sb.append('}');
         return sb.toString();
