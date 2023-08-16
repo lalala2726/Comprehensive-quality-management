@@ -10,6 +10,8 @@ Github:https://github.com/lalala2726/Comprehensive-quality-management
 
 Gitee:https://gitee.com/lalala888/studentManagement
 
+前端项目:https://github.com/lalala2726/student-complax-vue-ui
+
 # 项目介绍
 
 学校需要成绩评价系统，但是市面上不能满足要求所以找到我开发此系统，从沟通到开发然后测试上线时间紧急只有十天，所以系统里面只有没有那么完善，里面的软件包我个人感觉我写的非常乱。所以我开源只是记录我的第一个项目，Ruoyi的优秀框架为我提供了宝贵的支持，使得在短时间内完成开发成为可能。
