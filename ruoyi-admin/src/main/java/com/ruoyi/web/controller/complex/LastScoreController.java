@@ -5,7 +5,6 @@ import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.zhangchuang.complex.entity.StudentLastScore;
 import com.zhangchuang.complex.service.LastScoreService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +32,6 @@ public class LastScoreController extends BaseController {
      * @return 成绩列表
      */
 
-    @PreAuthorize("@ss.hasPermi('complex:rating:list')")
     @GetMapping("/list")
     public TableDataInfo list(StudentLastScore studentLastScore) {
         startPage();
